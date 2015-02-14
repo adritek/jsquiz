@@ -1,2 +1,2 @@
 # jsquiz
-A fun and simple quiz game
+A simple quiz game using objects, and vanilla JavaScript.

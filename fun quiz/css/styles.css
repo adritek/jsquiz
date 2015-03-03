@@ -3,6 +3,17 @@
   padding: 0;
 }
 
+html {
+  background: #444;
+}
+
+body {
+  width: 400px;
+  margin: 0 auto;
+  background: #fff;
+  height: 100vh;
+}
+
 header {
   font: bold 36px/120% Arial, Helvetica, sans-serif;
   background: #333;
@@ -21,7 +32,7 @@ section h3 {
   width: 300px;
 }
 
-.right {
+.correct {
   background: #0c0;
   border: #090 2px solid;
   color: #060;

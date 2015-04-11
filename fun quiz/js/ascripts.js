@@ -1,3 +1,6 @@
+(function(){
+"use strict";
+
 var quiz = {
 "name":"Super Hero Name Quiz",
 "description":"How many super heroes can you name?",
@@ -15,6 +18,7 @@ var $score = document.getElementById("score");
 var $feedback = document.getElementById("feedback");
 var $start = document.getElementById("start");
 var $form = document.getElementById("answer");
+var $timer = document.getElementById("timer");
 
 /// view functions ///
 
@@ -57,20 +61,31 @@ function play(quiz){
   var i = 0;
   chooseQuestion();
 
-  // nested functions
 
+  // initialise countdown
+  var time = 5;
+  update($timer,time);
+  var interval = window.setInterval(countDown, 1000);
+
+
+  // methods
   function chooseQuestion() {
+    console.log("choseQuestion() invoked");
     var question = quiz.questions[i].question;
     ask(question);
   }
 
+
   function ask(question) {
+    console.log("ask() invoked");
     update($question,quiz.question + question);
     $form[0].value = "";
     $form[0].focus();
   }
 
+
   function check(answer) {
+    console.log("check() invoked");
     if(answer.toLowerCase() === quiz.questions[i].answer.toLowerCase()){
       update($feedback,"Correct!","correct");
       // increase score by 1
@@ -87,10 +102,24 @@ function play(quiz){
     }
   }
 
+
+  function countDown(){
+    time--;
+    update($timer, time);
+    if(time <= 0){
+      gameOver();
+    }
+  }
+
+
   function gameOver(){
+    console.log("gameOver() invoked");
     // inform the player that the game has finished and tell them how many points they have scored
     update($question,"Game Over, you scored " + score + " points");
     hide($form);
     show($start);
+    window.clearInterval(interval);
   }
 }
+
+}())
